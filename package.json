@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "install": "cd client && npm install && npm build"
+    "build": "cd client && npm install && npm build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   }
 }
