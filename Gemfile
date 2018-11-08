@@ -8,6 +8,7 @@ gem "puma", "~> 3.11"
 gem "rack-cors"
 gem "sass-rails", "~> 5.0"
 gem "uglifier"
+gem "jbuilder"
 
 group :development do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   scope :admin do
     resources :restaurants
     resources :categories
+    resources :reviews
   end
 
   get "*path", to: "application#fallback_index_html"

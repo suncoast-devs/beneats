@@ -1,4 +1,6 @@
 class Api::RestaurantsController < ApplicationController
+  before_action :set_default_response_format
+
   def index
     scope = Restaurant.order(name: :ASC)
     scope = scope.limit(params[:limit].to_i) if params[:limit]
@@ -14,36 +16,15 @@ class Api::RestaurantsController < ApplicationController
     end
 
     @restaurants = scope
-    render json: @restaurants.map { |r|
-      {
-        id: r.id,
-        name: r.name,
-        location: r.location,
-        budget: r.budget,
-        slug: r.slug,
-        category: {
-          id: r.category.id,
-          name: r.category.name,
-          slug: r.category.slug,
-        },
-      }
-    }
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    render json: {
-      id: @restaurant.id,
-      name: @restaurant.name,
-      location: @restaurant.location,
-      budget: @restaurant.budget,
-      description: @restaurant.description,
-      slug: @restaurant.slug,
-      category: {
-        id: @restaurant.category.id,
-        name: @restaurant.category.name,
-        slug: @restaurant.category.slug,
-      },
-    }
+  end
+
+  private
+
+  def set_default_response_format
+    request.format = :json
   end
 end
