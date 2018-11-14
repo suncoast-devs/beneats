@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3000",
   "dependencies": {
+    "auth0-js": "^9.8.2",
     "bulma": "^0.7.2",
     "classnames": "^2.2.6",
     "node-sass": "^4.10.0",
