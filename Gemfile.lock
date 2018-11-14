@@ -58,6 +58,7 @@ GEM
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jwt (2.1.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -153,6 +154,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   jbuilder
+  jwt
   listen
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)

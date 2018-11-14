@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Loading from "./Loading";
 import StarRating from "./StarRating";
+import CommentForm from "./CommentForm";
 
 class RestaurantDetail extends Component {
   state = {
@@ -9,13 +10,21 @@ class RestaurantDetail extends Component {
   };
 
   componentDidMount() {
+    this.loadRestaurant();
+  }
+
+  reloadReviews = () => {
+    this.loadRestaurant();
+  };
+
+  loadRestaurant = () => {
     const { id } = this.props.match.params;
     fetch(`/api/restaurants/${id}`)
       .then(r => r.json())
       .then(restaurant => {
         this.setState({ restaurant, loading: false });
       });
-  }
+  };
 
   render() {
     const { loading, restaurant } = this.state;
@@ -61,7 +70,7 @@ class RestaurantDetail extends Component {
                     <figure className="media-left">
                       <p className="image is-64x64">
                         <img
-                          src="https://bulma.io/images/placeholders/128x128.png"
+                          src={review.user.avatar_url}
                           alt="Avatar Placeholder"
                         />
                       </p>
@@ -69,7 +78,7 @@ class RestaurantDetail extends Component {
                     <div className="media-content">
                       <div className="content">
                         <div>
-                          <strong>John Smith</strong> <small>31m</small>
+                          <strong>{review.user.name}</strong> <small>31m</small>
                           <p>{review.message}</p>
                         </div>
                       </div>
@@ -81,6 +90,10 @@ class RestaurantDetail extends Component {
                 ))}
               </div>
             </section>
+            <CommentForm
+              restaurantId={restaurant.id}
+              onCreated={this.reloadReviews}
+            />
           </>
         )}
       </>

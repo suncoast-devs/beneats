@@ -20,5 +20,8 @@ end
 json.reviews do
   json.array! @restaurant.reviews do |review|
     json.extract! review, :id, :rating, :message
+    json.user do
+      json.extract! review.user, :name, :avatar_url, :created_at
+    end
   end
 end

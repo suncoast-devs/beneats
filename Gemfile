@@ -9,6 +9,7 @@ gem "rack-cors"
 gem "sass-rails", "~> 5.0"
 gem "uglifier"
 gem "jbuilder"
+gem "jwt"
 
 group :development do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
